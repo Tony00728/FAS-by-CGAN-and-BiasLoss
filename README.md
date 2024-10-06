@@ -5,18 +5,7 @@ Original paper: https://arxiv.org/abs/1703.10593
 
 ## Results on test data
 
-### apple -> orange
 
-| Input | Output | | Input | Output | | Input | Output |
-|-------|--------|-|-------|--------|-|-------|--------|
-|![apple2orange_1](samples/real_apple2orange_1.jpg) | ![apple2orange_1](samples/fake_apple2orange_1.jpg)| |![apple2orange_2](samples/real_apple2orange_2.jpg) | ![apple2orange_2](samples/fake_apple2orange_2.jpg)| |![apple2orange_3](samples/real_apple2orange_3.jpg) | ![apple2orange_3](samples/fake_apple2orange_3.jpg)|
-
-
-### orange -> apple
-
-| Input | Output | | Input | Output | | Input | Output |
-|-------|--------|-|-------|--------|-|-------|--------|
-|![orange2apple_1](samples/real_orange2apple_1.jpg) | ![orange2apple_1](samples/fake_orange2apple_1.jpg)| |![orange2apple_2](samples/real_orange2apple_2.jpg) | ![orange2apple_2](samples/fake_orange2apple_2.jpg)| |![orange2apple_3](samples/real_orange2apple_3.jpg) | ![orange2apple_3](samples/fake_orange2apple_3.jpg)|
 
 ## Environment
 
@@ -95,9 +84,7 @@ Check TensorBoard to see training progress and generated images.
 $ tensorboard --logdir checkpoints/${datetime}
 ```
 
-Here are some funny screenshots from TensorBoard when training orange -> apple:
 
-![train_screenshot](samples/train_screenshot.png)
 
 
 ### Notes
