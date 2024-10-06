@@ -1,7 +1,6 @@
-# CycleGAN-TensorFlow
-An implementation of CycleGan using TensorFlow (work in progress).
+# Face Aging Synthesis by Deep Cycle Generative Adversarial Networks and Bias Loss
 
-Original paper: https://arxiv.org/abs/1703.10593
+#Original paper: https://arxiv.org/abs/1703.10593
 
 ## Results on test data
 
