@@ -2,7 +2,6 @@
 
 #Original paper: https://arxiv.org/abs/1703.10593
 
-"" Results on test data""
 
 
 
