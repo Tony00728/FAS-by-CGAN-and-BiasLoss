@@ -1,0 +1,261 @@
+未將sobel轉為3維 step:忘了 編碼as
+
+使用sobel的方法 step:68000 編碼a
+
+不使用sobel的方法 step:68800 編碼a1a
+
+方法(3) step:125000 編碼(3)
+
+方法(2) step:125000 編碼(2)
+
+G_loss:新增X-Y 125000 編號(4)
+
+G_loss:新增G(X)-Y 125000 編號(5)
+
+G_loss and D_loss:新增G(X)-Y與Dloss/3 125000 編號(6)
+
+G_loss and D_loss:新增(G(X)-Y)/2與Dloss/3 125000 編號(7)
+
+G_loss:新增tf.reduce_mean(tf.squared_difference(fake_y, y) / 2)與原始Dloss 編號(8)
+
+G_loss+VGGloss 編號(9) fail
+
+((VGGloss/10)+Gloss)/2 step:146000 overtraining 編號(10)
+
+((VGGloss/10)+Gloss)/2 step:90000 編號(11)
+
+((VGGloss/10)+Gloss)/2 step:100000 編號(12)
+
+ruin2building step:100000 編號r2b(1)
+
+r2b 修正VGGloss錯誤, Cycloss減半 step:100000 編號r2b(2)
+
+r2b 使用原始cyclegan做訓練 step:100000 編號r2b(3)
+
+r2b 使用VGG loss step:100000 編號r2b(4)
+
+VGGloss/8 step:100000 編號r2b(5) 失敗
+
+VGGloss/10+sobel step:100000 編號r2b(6)失敗
+
+VGGloss/10 挑pool layer 1~5 step:100000 編號r2b(7)
+
+VGGloss/10 y跟fy調整亮度+0.75 挑pool layer 1~5 step:100000 編號r2b(8)
+
+VGGloss/10 y跟fy調整亮度+0.75 挑conv layer 1~5 step:100000 失敗
+
+VGGloss/10 cycleloss F(G(X))-1.25brightX 挑conv layer 1~5 失敗
+
+VGGloss/10 挑conv1_2, conv2_1, conv2_2, conv3_2, conv3_3, conv4_2, conv4_3, conv5_2, conv5_3 step:100000 編號r2b(9)
+
+VGGloss/10 挑conv1_2, conv2_1, conv2_2, conv3_2, conv3_3, conv4_2, conv4_3, conv5_2, conv5_3 CyclelossX2 step:100000 編號r2b(10)
+
+VGGloss/10 挑vgg.conv1_2, vgg.conv2_1, vgg.conv2_2, vgg.conv3_1, vgg.conv3_2, vgg.conv3_3, vgg.conv4_1, vgg.conv4_2, vgg.conv4_3, vgg.conv5_1, vgg.conv5_2, vgg.conv5_3 step:70000 編號r2b(11)
+
+VGGloss/10 挑vgg.conv1_2, vgg.conv2_1, vgg.conv2_2, vgg.conv3_1, vgg.conv3_2, vgg.conv3_3, vgg.conv4_1, vgg.conv4_2, vgg.conv4_3, vgg.conv5_1, vgg.conv5_2, vgg.conv5_3 step:80000 編號r2b(12)vgg輸入size:224
+
+VGGloss/10 挑vgg.conv1_2, vgg.conv2_1, vgg.conv2_2, vgg.conv3_1, vgg.conv3_2, vgg.conv3_3, vgg.conv4_1, vgg.conv4_2, vgg.conv4_3, vgg.conv5_1, vgg.conv5_2, vgg.conv5_3 step:80000 編號r2b(13)vgg輸入size:256
+
+VGGloss/10 挑vgg.conv1_2, vgg.conv2_1, vgg.conv2_2, vgg.conv3_1, vgg.conv3_2, vgg.conv3_3, vgg.conv4_1, vgg.conv4_2, vgg.conv4_3, vgg.conv5_1, vgg.conv5_2, vgg.conv5_3 step:100000 編號r2b(14)
+
+VGGloss/10 挑vgg.conv1_2, vgg.conv2_1, vgg.conv2_2, vgg.conv3_1, vgg.conv3_2, vgg.conv3_3, vgg.conv4_1, vgg.conv4_2, vgg.conv4_3, vgg.conv5_1, vgg.conv5_2, vgg.conv5_3 step:80000 cropped image 編號r2b(15)
+
+VGGloss/10 挑vgg.conv1_2, vgg.conv2_2, vgg.conv3_2, vgg.conv3_3, vgg.conv4_2, vgg.conv4_3, vgg.conv5_3 step:80000 cropped image 編號r2b(16)
+
+原始CycleGAN step:80000 cropped image 編號r2b(17)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 step:80000 編號r2b(18)
+
+原始CycleGAN step:90000 cropped image 編號r2b(19)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 亮度+0.2  step:80000 編號r2b(20)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 step:90000 編號r2b(21)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 step:74000 RGB通道取出來相減 編號r2b(22)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 "sb1 = G(x) + sobel_gradient(x) sb2 = F(y) + sobel_gradient(y) exloss = tf.reduce_mean(tf.abs(sb1 - x)) + tf.reduce_mean(tf.abs(sb2 - y))" step:100000 編號r2b(23)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減 genloss/2 step:100000 編號r2b(24)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減 genloss/2 step:21000 編號r2b(25)
+
+原始CycleGAN step:21000 編號r2b(26)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減 genloss step:21000 編號r2b(27) best
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3  genloss step:21000 編號r2b(28) ###
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減 genloss step:25000 編號r2b(29) ###
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減 genloss step:23000 編號r2b(30)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減 genloss step:24000 編號r2b(31)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 RGB通道取出來相減，兩邊 genloss step:24000 編號r2b(32)
+
+原始CycleGAN step:25000 編號r2b(33) ###
+
+原始CycleGAN step:30000 編號r2b(34)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3  genloss step:30000 編號r2b(35)
+
+原始CycleGAN weight G(F(y))-y:G(F(x))-x=15:10 step:25000 編號r2b(37) ###
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減 genloss step:25000 編號r2b(38)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減 genloss step:27000 編號r2b(39)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減 genloss step:29000 編號r2b(40)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減 genloss step:30100 編號r2b(41)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減2:2:1 genloss step:25000 編號r2b(41)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減2:2:1 genloss step:27000 編號r2b(42)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減2:2:1 genloss step:30000 編號r2b(43)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減1.5:1.5:1 genloss step:30000 編號r2b(44)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減2:1:1 genloss step:30000 編號r2b(45)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減2:1:1 genloss step:30000 編號r2b(46)(X)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道取出來相減2:1:1 genloss step:30000 編號r2b(47)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道 只有H通道取出來相減  genloss step:30000 編號r2b(48)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道 只有S通道取出來相減  genloss step:30000 編號r2b(49)
+
+VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 HSV通道 只有V通道取出來相減  genloss step:30000 編號r2b(50)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:30000 編號r2b(51)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:33000 編號r2b(52)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:35000 編號r2b(53)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:38000 編號r2b(54)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:40000 編號r2b(55)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:43000 編號r2b(56)
+
+===========================================================================================================================================================================
+
+原始CycleGan step:100000 編號y2o(1)
+
+HSV image with VGGloss/10 挑conv1_2, conv2_2, conv3_3, conv4_3, conv5_3 genloss step:100000 編號y2o(2)
+
+原始CycleGan step:172600 編號y2o(3) 資料庫整理過
+
+原始CycleGan+scaleblur step:?????? 編號y2o(4) 資料庫整理過
+
+原始CycleGan+scaleblur+HSV VGG feature step:?????? 編號y2o(5) 資料庫整理過
+
+原始CycleGan+scaleblur+HSV VGG feature, cycloss/2 step:141000 編號y2o(6) 資料庫整理過
+
+原始CycleGan+scaleblur+ cycloss/2 step:212161 編號y2o(7) 資料庫整理過 54~55 years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2 編號y2o(8) step:210000 資料庫整理過 54~55 years old
+
+原始CycleGan+HSV image VGG feature loss, cyc loss 編號y2o(9) step:210000 資料庫整理過 54~55 years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2 編號y2o(10) step:210000 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 3層convlayer,input+conv3 編號y2o(11) step:210000 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 3層convlayer,input+con2+conv3 編號y2o(12) step:210000 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4 編號y2o(13) step:190000 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4+conv5 編號y2o(14) step:XX0000 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4+conv5 編號y2o(15) step:195000 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4 編號y2o(16) step:196700 資料庫整理過 60+ years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4 編號y2o(17) step:200000 資料庫整理過 45+- years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4 編號y2o(18) step:200000 資料庫整理過 35+- years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4 編號y2o(19) step:83271 資料庫整理過 65+- years old
+
+原始CycleGan+HSV image VGG feature loss/100, cyc loss/2, Resnet blok 4層convlayer,input+con2+conv3+conv4 編號y2o(20) step:150000 資料庫整理過 65+- years old
+
+原始CycleGan+HSV image VGG feature loss/100, cyc loss/2, Resnet blok 6層convlayer,input+con2+conv3+conv4+conv5+conv6 編號y2o(21) step:135000 資料庫整理過 65+- years old
+
+原始CycleGan+HSV image VGG feature loss/100, cyc loss/2, Resnet blok 7層convlayer,input+con2+conv3+conv4+conv5+conv6+7 編號y2o(22) step:164000 資料庫整理過 65+- years old
+
+原始CycleGan+HSV image VGG feature loss/5, cyc loss/2, Resnet blok 5層convlayer,input+con2+conv3+conv4+conv5 編號y2o(23) step:200000 資料庫整理過 45+ years old
+
+原始CycleGan Resnet block 4層convlayer,input+con2+conv3+conv4 編號y2o(23) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 4層convlayer,input+con2+conv3+conv4 編號y2o(24) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 5層convlayer,input+con2+conv3+conv4+conv5 編號y2o(25) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 6層convlayer,input+con2+conv3+conv4+conv5+conv6 編號y2o(26) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 編號y2o(27) step:200000 資料庫整理過 65+ years old ---------------------------good
+
+原始CycleGan Resnet 5層convlayer,input+con2+conv3+conv4+conv7 編號y2o(28) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet VGG feature loss/5  7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 編號y2o(29) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet VGG feature loss  7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 編號y2o(30) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 discriminator HSV 編號y2o(31) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 discriminator discriminator:16*16*1024 編號y2o(32) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 discriminator discriminator:64*64*256 編號y2o(33) step:XX0000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 gen_loss添加discriminator bias 編號y2o(xx) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 gen_loss添加discriminator bias:在生成器裡將real辨識為錯(0.1)weight:0.1 編號y2o(34) step:200000 資料庫整理過 65+ years old---good
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 gen_loss添加discriminator bias:在生成器裡將real辨識為錯(0.1)weight:0.2 編號y2o(35) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 gen_loss添加discriminator bias:在生成器裡將real辨識為錯(0.1)weight:0.5 編號y2o(36) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 gen_loss添加discriminator bias:在生成器裡將real辨識為錯(0.1)weight:0.05 編號y2o(37) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer,input+con2+conv3+conv4+conv5+conv6+conv7 gen_loss添加discriminator bias:在生成器裡將正確weight:0.9為錯(0.1)weight:0.1 編號y2o(38) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, gen_loss添加discriminator bias:在生成器裡將real辨識為錯(0.1)weight:0.1, Cycle loss L2距離, 編號y2o(39) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在生成器:real辨識為錯(0.1)weight:0.1, fake辨識為真(0.9)weight:1. 鑑別器:real辨識為真(0.9)weight:0.5, fake辨識為假(0.1)weight:0.5  Cycle loss L1距離, 編號y2o(40) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, 編號y2o(41) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0)weight:0.1, L1距離, 編號y2o(42) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0)weight:0.1 and D_X(F(G(x)))辨別假(0)weight:0.1, L1距離, 編號y2o(43) step:170000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/10, 編號y2o(44) step:160000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/100, 編號y2o(45) step:190000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(46) step:200000 資料庫整理過 65+ years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(47) step:200000 資料庫整理過 55 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(48) step:200000 資料庫整理過 45 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(49) step:200000 資料庫整理過 35 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(50) step:X0000 Morph資料庫 65 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(51) step:100000 Morph資料庫 65 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(52) step:95000 Morph資料庫 55 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(53) step:95000 Morph資料庫 45 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(54) step:95000 Morph資料庫 35 years old
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(55) step:95000 Morph資料庫 65 years old +5張論文圖片
+
+原始CycleGan Resnet 7層convlayer, 在Cycle loss內加入D_Y(G(F(y)))辨別假(0.1)weight:0.1, L1距離, VGG loss/1000, 編號y2o(56) step:95000 UTK資料庫 60 years old 
