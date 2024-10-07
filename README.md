@@ -12,11 +12,8 @@
 
 ## Data preparing
 
-* First, download a dataset, e.g. apple2orange
-
-```bash
-$ bash download_dataset.sh apple2orange
-```
+* First, download a dataset
+  CACD (Cross-Age Celebrity Dataset) https://datasets.activeloop.ai/docs/ml/datasets/cacd-dataset/
 
 * Write the dataset to tfrecords
 
