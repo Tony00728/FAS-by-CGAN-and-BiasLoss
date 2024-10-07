@@ -13,7 +13,7 @@
 ## Data preparing
 
 * First, download a dataset
-  CACD (Cross-Age Celebrity Dataset) https://datasets.activeloop.ai/docs/ml/datasets/cacd-dataset/
+  CACD (Cross-Age Celebrity Dataset) https://datasets.activeloop.ai/docs/ml/datasets/cacd-dataset/  or https://bcsiriuschen.github.io/CARC/
 
 * Write the dataset to tfrecords
 
